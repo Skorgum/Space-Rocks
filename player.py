@@ -3,12 +3,11 @@ from constants import *
 from circleshape import CircleShape
 from shot import Shot
 
-
 class Player(CircleShape):
-    def __init__(self, x, y, shots_group):
+    def __init__(self, x, y, shots):
         super().__init__(x, y, PLAYER_RADIUS)
         self.rotation = 0
-        self.shots_group = shots_group
+        self.shots_group = shots
         self.timer = 0
 
     def draw(self, screen):
@@ -42,7 +41,7 @@ class Player(CircleShape):
                 self.timer -= dt
             else:
                 shot = self.shoot()
-                self.shots_group.append(shot)
+                self.shots_group.add(shot)
 
     def shoot(self):
         shot = Shot(self.position.x, self.position.y)
